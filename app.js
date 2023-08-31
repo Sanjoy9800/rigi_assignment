@@ -59,74 +59,28 @@ content at a time.</p>
 	</div>`;
 }
 
-let toogleButtons = document.querySelectorAll(".toggle");
+let toggleButtons = document.querySelectorAll(".toggle");
 
-toogleButtons.forEach((button, Idx) =>
-	button.addEventListener("click", () => {
-		if (Idx === 0) {
-			if (document.querySelector(".courses").classList.contains("active")) {
-				document.querySelector(".courses").classList.remove("active");
-			}
-			if (
-				document.querySelector(".consultations").classList.contains("active")
-			) {
-				document.querySelector(".consultations").classList.remove("active");
-			}
-			if (toogleButtons[1].classList.contains("active")) {
-				toogleButtons[1].classList.remove("active");
-			}
-			if (toogleButtons[2].classList.contains("active")) {
-				toogleButtons[2].classList.remove("active");
-			}
-			let element = document.getElementsByClassName("community");
-			element[0].classList.add("active");
+toggleButtons.forEach((button, index) => {
+    button.addEventListener("click", () => {
+        // Remove 'active' class from all elements
+        document.querySelectorAll(".active").forEach((el) => el.classList.remove("active"));
 
-			button.classList.add("active");
-		} else if (Idx === 1) {
-					if (
-						document.querySelector(".community").classList.contains("active")
-					) {
-						document.querySelector(".community").classList.remove("active");
-					}
-					if (
-						document
-							.querySelector(".consultations")
-							.classList.contains("active")
-					) {
-						document.querySelector(".consultations").classList.remove("active");
-					}
-					if (toogleButtons[0].classList.contains("active")) {
-						toogleButtons[0].classList.remove("active");
-					}
-					if (toogleButtons[2].classList.contains("active")) {
-						toogleButtons[2].classList.remove("active");
-					}
-					let element = document.getElementsByClassName("courses");
-					element[0].classList.add("active");
-					button.classList.add("active");
-		} else {
-						if (
-							document.querySelector(".community").classList.contains("active")
-						) {
-							document.querySelector(".community").classList.remove("active");
-						}
-						if (
-							document.querySelector(".courses").classList.contains("active")
-						) {
-							document.querySelector(".courses").classList.remove("active");
-						}
-						if (toogleButtons[1].classList.contains("active")) {
-							toogleButtons[1].classList.remove("active");
-						}
-						if (toogleButtons[0].classList.contains("active")) {
-							toogleButtons[0].classList.remove("active");
-						}
+        // Add 'active' class to the corresponding element
+        let elements = document.getElementsByClassName(
+            index === 0 ? "community" :
+            index === 1 ? "courses" :
+            "consultations"
+        );
+        elements[0].classList.add("active");
 
-						let element = document.getElementsByClassName("consultations");
-						element[0].classList.add("active");
-						button.classList.add("active");
-		}
-	})
-);
+        // Add 'active' class to the clicked button
+        button.classList.add("active");
+    });
+});
 
-
+const mentBtn = document.querySelector('.menu-btn')
+const navLinks = document.querySelector('.nav-links')
+mentBtn.addEventListener('click', () => {
+    navLinks.classList.toggle('mobile-menu')
+})
